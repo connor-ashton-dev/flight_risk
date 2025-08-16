@@ -416,19 +416,14 @@ export default function FlightRiskAssessment() {
                       >
                         <input
                           type="checkbox"
-                          id={factor.id}
                           checked={factor.value}
-                          onChange={() => toggleRiskFactor(factor.id)}
-                          onClick={(e) => e.stopPropagation()}
+                          readOnly
                           className="mt-1 h-4 w-4 rounded border-border text-primary focus:ring-ring pointer-events-none"
                         />
                         <div className="flex-1 min-w-0">
-                          <label
-                            htmlFor={factor.id}
-                            className="text-sm font-medium cursor-pointer leading-5"
-                          >
+                          <div className="text-sm font-medium leading-5">
                             {factor.label}
-                          </label>
+                          </div>
                           <div className="flex items-center gap-2 mt-1">
                             <Badge
                               variant={
