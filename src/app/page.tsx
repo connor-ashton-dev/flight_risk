@@ -245,8 +245,6 @@ export default function FlightRiskAssessment() {
     setRiskFactors((prev) =>
       prev.map((factor) => ({ ...factor, value: false })),
     );
-    setPilotType("VFR");
-    setExperienceLevel("<100");
   };
 
   const calculateTotalRisk = () => {
