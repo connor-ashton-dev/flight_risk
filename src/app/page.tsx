@@ -459,7 +459,7 @@ export default function FlightRiskAssessment() {
               <CardContent className="space-y-4">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary mb-2">
-                    {totalRisk}
+                    {Math.max(totalRisk, 0)}
                   </div>
                   <Badge
                     className={`${riskAssessment.color} text-white px-4 py-2 text-sm font-semibold`}
@@ -473,9 +473,14 @@ export default function FlightRiskAssessment() {
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm">
                     <span>Risk Score</span>
-                    <span className="font-medium">{totalRisk}/78</span>
+                    <span className="font-medium">
+                      {Math.max(totalRisk, 0)}
+                    </span>
                   </div>
-                  <Progress value={(totalRisk / 78) * 100} className="h-2" />
+                  <Progress
+                    value={Math.max((totalRisk / 78) * 100, 0)}
+                    className="h-2"
+                  />
                 </div>
 
                 <div className="space-y-2 text-xs text-muted-foreground">
