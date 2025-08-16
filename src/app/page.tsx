@@ -473,9 +473,9 @@ export default function FlightRiskAssessment() {
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm">
                     <span>Risk Score</span>
-                    <span className="font-medium">{totalRisk}/100</span>
+                    <span className="font-medium">{totalRisk}/78</span>
                   </div>
-                  <Progress value={Math.min(totalRisk, 100)} className="h-2" />
+                  <Progress value={(totalRisk / 78) * 100} className="h-2" />
                 </div>
 
                 <div className="space-y-2 text-xs text-muted-foreground">
