@@ -27,7 +27,7 @@ interface RiskFactor {
 export default function FlightRiskAssessment() {
   const [pilotType, setPilotType] = useState<"VFR" | "IFR">("VFR");
   const [experienceLevel, setExperienceLevel] = useState<">100" | "<100">(
-    "<100"
+    "<100",
   );
 
   const [riskFactors, setRiskFactors] = useState<RiskFactor[]>([
@@ -154,14 +154,14 @@ export default function FlightRiskAssessment() {
       id: "vfr-visibility",
       label: "Visibility less than 5 SM",
       value: false,
-      score: 0,
+      score: 2,
       category: "vfr",
     },
     {
       id: "vfr-plan-filed",
       label: "Flight Plan filed and activated",
       value: false,
-      score: 0,
+      score: -2,
       category: "vfr",
     },
     {
@@ -236,14 +236,14 @@ export default function FlightRiskAssessment() {
   const toggleRiskFactor = (id: string) => {
     setRiskFactors((prev) =>
       prev.map((factor) =>
-        factor.id === id ? { ...factor, value: !factor.value } : factor
-      )
+        factor.id === id ? { ...factor, value: !factor.value } : factor,
+      ),
     );
   };
 
   const resetForm = () => {
     setRiskFactors((prev) =>
-      prev.map((factor) => ({ ...factor, value: false }))
+      prev.map((factor) => ({ ...factor, value: false })),
     );
     setPilotType("VFR");
     setExperienceLevel("<100");
@@ -341,11 +341,14 @@ export default function FlightRiskAssessment() {
     }
   };
 
-  const groupedFactors = riskFactors.reduce((acc, factor) => {
-    if (!acc[factor.category]) acc[factor.category] = [];
-    acc[factor.category].push(factor);
-    return acc;
-  }, {} as Record<string, RiskFactor[]>);
+  const groupedFactors = riskFactors.reduce(
+    (acc, factor) => {
+      if (!acc[factor.category]) acc[factor.category] = [];
+      acc[factor.category].push(factor);
+      return acc;
+    },
+    {} as Record<string, RiskFactor[]>,
+  );
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-6">
